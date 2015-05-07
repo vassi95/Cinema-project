@@ -1,14 +1,13 @@
 import sqlite3
 import sys
+from settings import *
 
-if sys.argc != 3:
-    print("Enter 3 arguments!")
-else:
-    db_name = sys.argv[1]
-    sql_file = sys.argv[2]
+if len(sys.argv) > 1:
+    DB_NAME = sys.argv[1]
+    SQL_FILE = sys.argv[2]
 
-conn = sqlite3.connect(db_name)
+conn = sqlite3.connect(DB_NAME)
 
-with open(sql_file, "r") as f:
+with open(SQL_FILE, "r") as f:
     conn.executescript(f.read())
     conn.commit()
