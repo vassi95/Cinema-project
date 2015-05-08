@@ -18,6 +18,10 @@ class Reservation:
     GET_RESERVED_SEATS = '''
     SELECT COUNT(id) FROM Reservations WHERE row=? AND col=?'''
 
+    GET_OCCUPIED_SEATS = '''
+    SELECT row, col FROM Reservations
+    WHERE projection_id=? '''
+
     @classmethod
     def get_last_id(cls, conn):
         curr = conn.cursor()
@@ -50,14 +54,18 @@ class Reservation:
             return True
         return False
 
-    def print_occupied(cls, conn, tpl_lst):
-         rows, cols = HALL_SIZE
-         hall = [['.' for x in range(rows)] for y in range(cols)]
-         for element in tpl_lst:
-             x, y = element
-             hall[x][y] = 'X'
+    @classmethod
+    def print_occupied(cls, conn, proj_id):
+        cursor = conn.cursor()
+        result = cursor.execute(cls.GET_OCCUPIED_SEATS, (proj_id,))
+        tpl_lst = [tpl for tpl in result]
+        rows, cols = HALL_SIZE
+        hall = [['.' for x in range(rows)] for y in range(cols)]
+        for element in tpl_lst:
+            x, y = element
+            hall[x][y] = 'X'
 
-         updated_hall = numpy.array(hall)
-         headers = [x for x in range(1,11)]
-         df = pandas.DataFrame(updated_hall, columns=headers, index=headers)
-         print(df)
+        updated_hall = numpy.array(hall)
+        headers = [x for x in range(1,11)]
+        df = pandas.DataFrame(updated_hall, columns=headers, index=headers)
+        print(df)
