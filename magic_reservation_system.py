@@ -52,7 +52,7 @@ def make_reservation():
             chosen = input("Step 4 (Seats): Choose seat {}>".format(ticket+1))
             if chosen == 'give_up':
                 return
-            chosen = tuple(int((x-1).strip()) for x in chosen.split(','))
+            chosen = tuple(int(x.strip()) for x in chosen.split(','))
             if Reservation.check_if_is_reserved(conn, chosen) == True:
                 print('This seat is already taken!')
             elif chosen[0] > 10 or chosen[0] < 1 or chosen[1] > 10 or chosen[1] < 1:

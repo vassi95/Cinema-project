@@ -63,7 +63,7 @@ class Reservation:
         hall = [['.' for x in range(rows)] for y in range(cols)]
         for element in tpl_lst:
             x, y = element
-            hall[x][y] = 'X'
+            hall[x-1][y-1] = 'X'
 
         updated_hall = numpy.array(hall)
         headers = [x for x in range(1,11)]
