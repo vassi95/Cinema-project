@@ -9,6 +9,6 @@ else:
 
 conn = sqlite3.connect(db_name)
 
-with open(DB_DATA, "r") as fd:
-    conn.executescript(fd.read())
+with open(DB_DATA, "r") as f:
+    conn.executescript(f.read())
     conn.commit()
