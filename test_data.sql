@@ -13,8 +13,4 @@ INSERT INTO Projections VALUES(3, 1, "4DX", "2014-04-02", "21:10");
 INSERT INTO Projections VALUES(4, 3, "2D", "2014-04-05", "20:30");
 INSERT INTO Projections VALUES(5, 2, "3D", "2014-04-02", "22:00");
 INSERT INTO Projections VALUES(6, 2, "2D", "2014-04-02", "19:30");
-INSERT INTO Projections VALUES(4, 3, "2D", "2014-04-05", "20:30");
-INSERT INTO Projections VALUES(4, 3, "2D", "2014-04-05", "20:30");
-INSERT INTO Projections VALUES(4, 3, "2D", "2014-04-05", "20:30");
-INSERT INTO Projections VALUES(4, 3, "2D", "2014-04-05", "20:30");
 -- Reservations
