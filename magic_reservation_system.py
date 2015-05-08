@@ -42,6 +42,7 @@ def make_reservation():
         return
     projection_id = int(projection_id)
     print('Available seats (marked with a dot):')
+    print(Reservation.print_occupied(conn, projection_id))
     print(Reservation.free_spots(conn, 1))
     occupied_seats = []
     chosen_seats = []
