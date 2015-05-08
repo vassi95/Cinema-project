@@ -33,3 +33,11 @@ class Reservation:
         crsr=conn.cursor()
         crsr.execute(cls.MAKE_RESERVATION, (id, user, proj_id, row, col))
         conn.commit()
+
+    def print_occupied(cls, conn, tpl_lst):
+        rows, cols = HALL_SIZE
+        hall = [['.' for x in range(rows)] for y in range(cols)]
+        for element in tpl_lst:
+            x, y = element
+            hall[x][y] = 'X'
+
