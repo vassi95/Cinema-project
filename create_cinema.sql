@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS Movies;
 
 CREATE TABLE Movies(id INTEGER UNIQUE PRIMARY KEY NOT NULL,
-                    name TEXT
-                    rating real);
+                    name TEXT, rating real);
 
 DROP TABLE IF EXISTS Projections;
 CREATE TABLE Projections(id INTEGER UNIQUE PRIMARY KEY NOT NULL,
