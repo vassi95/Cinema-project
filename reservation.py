@@ -68,4 +68,4 @@ class Reservation:
         updated_hall = numpy.array(hall)
         headers = [x for x in range(1,11)]
         df = pandas.DataFrame(updated_hall, columns=headers, index=headers)
-        print(df)
+        return df
