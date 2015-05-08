@@ -40,4 +40,3 @@ class Reservation:
         for element in tpl_lst:
             x, y = element
             hall[x][y] = 'X'
-
