@@ -95,12 +95,12 @@ def exit():
 
 
 def show_help():
-    print('The following commands are available:\n')
-    print('--> "show_movies" - Prints all movies ordered by rating')
-    print('--> "show_movie_projections <movie_id> [<date>]" - Prints all projections of a given movie for the given date (date is optional).')
-    print('--> "make_reservation" - You can choose a movie and reserve seats')
-    print('--> "cancel_reservation <name>" - You can cansel a reservation')
-    print('--> "exit" - Leave the menu')
+    print('''The following commands are available:\n
+    --> "show_movies" - Prints all movies ordered by rating
+    --> "show_movie_projections <movie_id> [<date>]" - Prints all projections of a given movie for the given date (date is optional).
+    --> "make_reservation" - You can choose a movie and reserve seats
+    --> "cancel_reservation <name> <projection_id>" - You can cansel a reservation
+    --> "exit" - Leave the menu''')
 
 
 def main():
