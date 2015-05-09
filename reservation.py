@@ -48,14 +48,13 @@ class Reservation:
         conn.commit()
 
     @classmethod
-    def check_if_is_reserved(cls, conn, tpl):
+    def is_reserved(cls, conn, tpl):
         row, col = tpl
         crsr = conn.cursor()
         crsr.execute(cls.GET_RESERVED_SEATS, (row, col))
-        a = crsr.fetchone()[0]
-        if a != 0:
-            return True
-        return False
+        # if result of sql == 0 it returns False
+        # which means seat is not reserved
+        return 0 != crsr.fetchone()[0]
 
     @classmethod
     def delete_reservation(cls, conn, name, projection_id):
