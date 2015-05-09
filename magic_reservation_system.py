@@ -3,6 +3,7 @@ import sqlite3
 from movies import Movie
 from projections import Projection
 from reservation import Reservation
+from comands import Commands
 
 conn = sqlite3.connect('cinema.db')
 
@@ -43,7 +44,6 @@ def make_reservation():
     projection_id = int(projection_id)
     print('Available seats (marked with a dot):')
     print(Reservation.print_occupied(conn, projection_id))
-    print(Reservation.free_spots(conn, 1))
     occupied_seats = []
     chosen_seats = []
     for ticket in range(tickets):
@@ -71,6 +71,17 @@ def make_reservation():
         print('Thanks! Enjoy the movie!')
 
 
+def create_commands():
+    c = Commands()
+    c.add_commands('show_movies', show_movies)
+    c.add_commands('show_movie_projections', show_movie_projections)
+    c.add_commands('make_reservation', make_reservation)
+    # c.add_command('cancel_reservation', cancel_reservation)
+    c.add_commands('exit', exit)
+    c.add_commands('show_help', show_help)
+    return c
+
+
 def exit():
     import sys
     print('Goodbye!')
@@ -87,9 +98,12 @@ def show_help():
 
 
 def main():
-    print(show_movies())
-    print(show_movie_projections(3))
-    print(make_reservation())
+    commands = create_commands()
+    while True:
+        command = input('>')
+        commands.execute(command)
+
+
 
 if __name__ == '__main__':
     main()
