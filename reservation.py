@@ -66,6 +66,6 @@ class Reservation:
             hall[x-1][y-1] = 'X'
 
         updated_hall = numpy.array(hall)
-        headers = [x for x in range(1,11)]
+        headers = [x for x in range(1, 11)]
         df = pandas.DataFrame(updated_hall, columns=headers, index=headers)
         return df

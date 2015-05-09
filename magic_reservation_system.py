@@ -9,14 +9,14 @@ conn = sqlite3.connect('cinema.db')
 
 
 def show_movies():
-    print('Current movies:')
+    print('\nCurrent movies:\n')
     mov = Movie.show_movies(conn)
     for row in mov:
         print('[{}]-{}-({})'.format(row[0], row[1], row[2]))
 
 
 def show_movie_projections(movie_id):
-    print('Projections for movie:')
+    print('Projections for movie:\n')
     proj = Projection.get_projection_from_db(conn, (movie_id))
     for row in proj:
         print('[{}]-{}-{}'.format(row[0], row[1], row[2]))
@@ -42,13 +42,13 @@ def make_reservation():
     if projection_id == 'give_up':
         return
     projection_id = int(projection_id)
-    print('Available seats (marked with a dot):')
-    print(Reservation.print_occupied(conn, projection_id))
     occupied_seats = []
     chosen_seats = []
     for ticket in range(tickets):
         seat_free = False
         while not seat_free:
+            print('Available seats(marked with dots)')
+            print(Reservation.print_occupied(conn, projection_id))
             chosen = input("Step 4 (Seats): Choose seat {}>".format(ticket+1))
             if chosen == 'give_up':
                 return
@@ -58,6 +58,7 @@ def make_reservation():
             elif chosen[0] > 10 or chosen[0] < 1 or chosen[1] > 10 or chosen[1] < 1:
                 print('Cinema is 10x10!')
             else:
+                Reservation.reserve(conn, (name, projection_id, chosen[0], chosen[1]))
                 seat_free = True
                 occupied_seats.append(chosen)
                 chosen_seats.append(chosen)
@@ -89,15 +90,18 @@ def exit():
 
 
 def show_help():
-    print('The following commands are available:')
-    print('- "show_movies" - Prints all movies ordered by rating')
-    print('- "show_movie_projections <movie_id> [<date>]" - Prints all projections of a given movie for the given date (date is optional).')
-    print('- "make_reservation" - You can choose a movie and reserve seats')
-    print('- "cancel_reservation <name>" - You can cansel a reservation')
-    print('- "exit" - Leave the menu')
+    print('The following commands are available:\n')
+    print('--> "show_movies" - Prints all movies ordered by rating')
+    print('--> "show_movie_projections <movie_id> [<date>]" - Prints all projections of a given movie for the given date (date is optional).')
+    print('--> "make_reservation" - You can choose a movie and reserve seats')
+    print('--> "cancel_reservation <name>" - You can cansel a reservation')
+    print('--> "exit" - Leave the menu')
 
 
 def main():
+    print('\n\n\t\tWellcome to our cinema! Choose one of the options:\n\n')
+    show_help()
+    print('\n')
     commands = create_commands()
     while 1:
         command = input('>')
