@@ -102,7 +102,6 @@ def show_help():
     --> "cancel_reservation <name> <projection_id>" - You can cansel a reservation
     --> "exit" - Leave the menu''')
 
-
 def main():
     print('\n\n\t\tWellcome to our cinema! Choose one of the options:\n\n')
     show_help()

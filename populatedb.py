@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sqlite3
 import sys
 from settings import DB_NAME, DB_DATA
@@ -12,3 +13,4 @@ conn = sqlite3.connect(db_name)
 with open(DB_DATA, "r") as f:
     conn.executescript(f.read())
     conn.commit()
+    conn.close()
