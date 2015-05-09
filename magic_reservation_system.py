@@ -77,10 +77,15 @@ def create_commands():
     c.add_commands('show_movies', show_movies)
     c.add_commands('show_movie_projections', show_movie_projections)
     c.add_commands('make_reservation', make_reservation)
-    # c.add_command('cancel_reservation', cancel_reservation)
+    c.add_commands('cancel_reservation', cancel_reservation)
     c.add_commands('exit', exit)
     c.add_commands('show_help', show_help)
     return c
+
+
+def cancel_reservation(name, projection_id):
+    Reservation.delete_reservation(conn, name, projection_id)
+    print('Reservation on the name of {} was canceled.'.format(name))
 
 
 def exit():

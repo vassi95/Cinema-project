@@ -22,6 +22,9 @@ class Reservation:
     SELECT row, col FROM Reservations
     WHERE projection_id=? '''
 
+    DELETE_RESERVATION = '''
+    DELETE FROM Reservations WHERE username = ? AND projection_id = ?'''
+
     @classmethod
     def get_last_id(cls, conn):
         curr = conn.cursor()
@@ -53,6 +56,12 @@ class Reservation:
         if a != 0:
             return True
         return False
+
+    @classmethod
+    def delete_reservation(cls, conn, name, projection_id):
+        cursor = conn.cursor()
+        cursor.execute(cls.DELETE_RESERVATION, (name, projection_id))
+        conn.commit()
 
     @classmethod
     def print_occupied(cls, conn, proj_id):
