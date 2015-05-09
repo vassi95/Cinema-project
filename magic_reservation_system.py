@@ -99,11 +99,9 @@ def show_help():
 
 def main():
     commands = create_commands()
-    while True:
+    while 1:
         command = input('>')
-        commands.execute(command)
-
-
+        commands.run(command)
 
 if __name__ == '__main__':
     main()

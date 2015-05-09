@@ -8,7 +8,7 @@ class Commands:
         return func
 
     @classmethod
-    def execute(cls, enter):
+    def run(cls, enter):
         enter = enter.split(" ")
         new_command = enter[0]
         arguments = enter[1:]
