@@ -28,8 +28,10 @@ class Reservation:
     @classmethod
     def get_last_id(cls, conn):
         curr = conn.cursor()
-        curr.execute('''SELECT MAX(id) FROM Reservations''')
-        return curr.fetchone()[0]
+        curr.execute('''SELECT MAX(id) FROM Reservations ''')
+        last_id = curr.fetchone()[0]
+
+        return last_id if last_id else 0
 
     @classmethod
     def free_spots(cls, conn, id):
